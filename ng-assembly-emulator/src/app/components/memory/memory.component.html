@@ -1,0 +1,30 @@
+<div class="memory-container">
+
+    <div class="title">
+        Primary memory
+    </div>
+    <div class="body">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col" (click)="toggleAddresDisplayType()" class="clickable">#</th>
+                    <th scope="col" (click)="toggleValueDisplayType()" class="clickable">value</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let value of emulatorService.primaryMemory; index as i" [ngClass]="{'current-row': i == emulatorService.programCounter}">
+                    <td scope="row" *ngIf="addresDisplayType == DisplayType.Binary">{{i | binary8}}</td>
+                    <td scope="row" *ngIf="addresDisplayType == DisplayType.Hex">{{i | hex}}</td>
+                    <td scope="row" *ngIf="addresDisplayType == DisplayType.Decimal">{{i}}</td>
+                    <td *ngIf="valueDisplayType == DisplayType.Binary">{{value | binary16}}</td>
+                    <td *ngIf="valueDisplayType == DisplayType.Hex">{{value | hex}}</td>
+                    <td *ngIf="valueDisplayType == DisplayType.Decimal">{{value}}</td>
+                    <td *ngIf="valueDisplayType == DisplayType.Instruction && emulatorService.showIndexAsInstruction.includes(i)">{{value | instructionText}}</td>
+                    <td *ngIf="valueDisplayType == DisplayType.Instruction && !emulatorService.showIndexAsInstruction.includes(i)">{{value}}</td>
+                    <td><span *ngIf="i == emulatorService.programCounter">{{'⬅'}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

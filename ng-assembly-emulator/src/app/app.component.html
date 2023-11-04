@@ -1,1 +1,9 @@
-asd
+<div style="margin: 2rem;">
+    <div style="display: flex; gap: 1rem; margin-bottom: 0!important;">
+        <button class="btn btn-primary" (click)="emulatorService.reset();">Reset</button>
+        <button class="btn btn-primary" (click)="emulatorService.tick();">Tick</button>
+    </div>
+    <div style="margin-top: 2rem;">
+        <app-memory></app-memory>
+    </div>
+</div>
